@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Boolfolio;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
-class PortfolioController extends Controller
+class BoolfolioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,6 +14,8 @@ class PortfolioController extends Controller
     public function index()
     {
         //
+        $boolfolios = Boolfolio::all();
+        return view('boolfolios.index', compact('boolfolios'));
     }
 
     /**
