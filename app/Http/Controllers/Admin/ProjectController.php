@@ -44,7 +44,9 @@ class ProjectController extends Controller
         $form_data = $request->all();
         $form_data['slug'] = Str::slug($form_data['project_name']);
 
-        $project = Project::create($form_data);
+        $new_project = Project::create($form_data);
+
+        return redirect()->route('admin.projects.show', $new_project);
 
         // $project = Project::create(
         //     $request->only('project_name', 'project_description') +
