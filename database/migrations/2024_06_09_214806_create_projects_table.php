@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boolfolios', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('project_name');
+            $table->string('project_name', 150);
             $table->text('project_description');
             $table->string('github_link');
-            $table->dateTime('uploading_date');
-            $table->text('about_me');
+            $table->text('about_me')->nullable();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('boolfolios');
+        Schema::dropIfExists('projects');
     }
 };

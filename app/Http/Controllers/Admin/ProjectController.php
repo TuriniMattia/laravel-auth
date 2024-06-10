@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
-use App\Models\Boolfolio;
-use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
-class BoolfolioController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class BoolfolioController extends Controller
     public function index()
     {
         //
-        $boolfolios = Boolfolio::all();
-        return view('boolfolios.index', compact('boolfolios'));
+        $projects = Project::all();
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -24,6 +24,7 @@ class BoolfolioController extends Controller
     public function create()
     {
         //
+        return view('admin.projects.create');
     }
 
     /**
@@ -37,15 +38,16 @@ class BoolfolioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
         //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
         //
     }
@@ -53,7 +55,7 @@ class BoolfolioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
         //
     }
@@ -61,7 +63,7 @@ class BoolfolioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
         //
     }
