@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -32,7 +33,25 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'project_name' => 'required|max:150|unique:projects',
+            'project_description' => 'required|max:500',
+            'github_link' => 'url:http,https',
+        ]);
+
+
+        // dd($request->all());
+        $form_data = $request->all();
+        $form_data['slug'] = Str::slug($form_data['project_name']);
+
+        $project = Project::create($form_data);
+
+        // $project = Project::create(
+        //     $request->only('project_name', 'project_description') +
+        //         [
+        //             'slug' => $request->project_name,
+        //         ]
+        // );
     }
 
     /**
